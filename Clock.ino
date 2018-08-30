@@ -1,3 +1,5 @@
+#include <RTClib.h>
+
 const int DISCO = 0;
 const int NUMBERS = 1;
 const int COUNTDOWN = 2;
