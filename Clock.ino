@@ -23,20 +23,37 @@ void setup() {
 }
 
 void loop() {
-  switch(mode) {
-    case DISCO: {
-      discoLooping();
-      break;
-    }
-    case NUMBERS: {
-      numberLooping();
-      break;
-    }
-    default: {
-      countdownLooping();
-      break;
-    }
-  }
+//  switch(mode) {
+//    case DISCO: {
+//      discoLooping();
+//      break;
+//    }
+//    case NUMBERS: {
+//      numberLooping();
+//      break;
+//    }
+//    default: {
+//      countdownLooping();
+//      break;
+//    }
+//  }
+
+  Serial.begin(9600);
+
+  DateTime now = rtc.now();
+
+  Serial.end();
+
+  int hour1 = now.hour() / 10;
+  int hour2 = now.hour() % 10;
+  int minute1 = now.minute() / 10;
+  int minute2 = now.minute() % 10;
+
+  setDigitValue(10, hour1);
+  setDigitValue(11, hour2);
+  setDigitValue(12, minute1);
+  setDigitValue(13, minute2);
+
 }
 
 void discoLooping() {
@@ -109,8 +126,6 @@ void initialiseRtc() {
   #endif  
 
   Serial.begin(9600);
-
-  delay(3000); // wait for console opening
 
   if (! rtc.begin()) {
     Serial.println("Couldn't find RTC");
